@@ -1,0 +1,40 @@
+.header {
+  width: 100%;
+  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 2em 1em;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.logo-link {
+  text-decoration: none;
+}
+
+.logo-link:hover {
+  color: var(--main-primary-color);
+  
+  opacity: 0.75;
+
+  transition: background-color .35s, opacity .35s;
+}
+
+.navbar__list {
+  display: flex;
+}
+
+.navbar__list-item {
+  display: block;
+}
+
+.navbar__link {
+  display: inline-block;
+
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  padding: 6.5px 15px;
+}
