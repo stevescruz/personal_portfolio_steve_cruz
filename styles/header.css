@@ -21,6 +21,14 @@
   transition: background-color .35s, opacity .35s;
 }
 
+.toggler {
+  display: none;
+}
+
+.toggler__label {
+  display: none;
+}
+
 .navbar__list {
   display: flex;
 }
@@ -37,4 +45,108 @@
   text-decoration: none;
 
   padding: 6.5px 15px;
+}
+
+@media(max-width: 911px) {
+  .header {
+    padding: 1em 0.5em;
+  }
+
+  .toggler {
+    font-size: 2em;
+    text-decoration: none;
+    user-select: none;
+  }
+
+  .toggler__label {
+    display: inline-block;
+
+    z-index: 1001;
+
+    transition: background-image .35s, opacity .35s;
+  }
+
+  .toggler__icon {
+    width: 26px;
+    height: 26px;
+
+    background-image: url('../assets/menu.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .toggler__label:not(:checked):hover .toggler__icon {
+    background-image: url('../assets/menu-hover.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    opacity: 1;
+  }
+
+  .toggler:checked + .toggler__label .toggler__icon {
+    width: 40px;
+    height: 40px;
+
+    background-image: url('../assets/x.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .toggler__label:hover {
+    opacity: 0.75;
+
+    cursor: pointer;
+  }
+
+  .navbar {
+    position: absolute;
+    opacity: 0;
+
+    pointer-events: none;
+
+  }
+  
+  .toggler:checked ~ .navbar{
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    z-index: 1000;
+
+    background: #181818;
+
+    opacity: 0.95;
+
+    pointer-events: all;
+
+    transition: all 0.7s ease-in-out;
+  }
+
+  .navbar__list {
+    flex-direction: column;
+  }
+
+  .navbar__link {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--font-secondary-color);
+
+    padding: 0.5rem;
+  }
+
+  .navbar__link:hover {
+    color: var(--font-tertiary-color);
+  }
+
+  .navbar__list-item:first-of-type a {
+    color: var(--font-tertiary-color);
+  }
 }
