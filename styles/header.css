@@ -41,7 +41,6 @@
   display: inline-block;
 
   font-size: 0.9rem;
-  text-transform: uppercase;
   text-decoration: none;
 
   padding: 6.5px 15px;
@@ -108,16 +107,16 @@
     justify-content: center;
     align-items: center;
 
-    transition: all 0.7s ease-in;
+    background: #181818;
+
+    transition: all 0.7s ease;
   }
 
   .toggler:checked ~ .popup-window {
     top: 0;
 
     opacity: 0.95;
-    transition: all 0.7s ease-in;
-
-    background: #181818;
+    transition: all 0.7s ease;
   }
 
   .navbar__list {
