@@ -49,7 +49,7 @@
 
 @media(max-width: 911px) {
   .header {
-    padding: 1em 0.5em;
+    padding: 1em 1em;
   }
 
   .toggler {
@@ -95,36 +95,29 @@
     cursor: pointer;
   }
 
-  .navbar {
-    position: absolute;
-    opacity: 0;
-
-    pointer-events: none;
-
-  }
-  
-  .toggler:checked ~ .navbar{
+  .popup-window {
     width: 100%;
     height: 100%;
+
+    position: fixed;
+    left: 0;
+    top: -100%;
+    z-index: 1000;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
-    position: absolute;
+    transition: all 0.7s ease-in;
+  }
 
-    left: 0;
+  .toggler:checked ~ .popup-window {
     top: 0;
 
-    z-index: 1000;
+    opacity: 0.95;
+    transition: all 0.7s ease-in;
 
     background: #181818;
-
-    opacity: 0.95;
-
-    pointer-events: all;
-
-    transition: all 0.7s ease-in-out;
   }
 
   .navbar__list {
