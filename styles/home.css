@@ -22,13 +22,16 @@
 
 .home__text-content > h1 {
   font-size: 3rem;
+  font-weight: normal;
   color: var(--font-secondary-color);
+  line-height: 1;
 
   margin-bottom: 0.5em;
 }
 
 .home__text-content > p {
   font-size: 1.9rem;
+  font-weight: bold;
   color: var(--font-secondary-color);
 
   margin: 0.75em 0 1em 0;
@@ -105,28 +108,25 @@
   width: 50%;
   height: 100%;
 
-  /* background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6) ), url('../assets/home-background.jpg');
+  background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6) ), url('../assets/home-background.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
 
-  opacity: 0.9; */
-
-  background-color: tomato;
+  opacity: 0.9;
 }
 
-.home__main-image {
-  width: 100%;
-  /* height: 100%; */
-  /* max-width: 100%; */
-  /* max-height: 50%; */
-  /* max-height: 800px; */
-  object-fit: cover;
+@media(min-width: 1370px) {
+
+  .home__right-container {
+    background-size: 100%;
+    background-position: center;
+  }
 }
 
 @media(max-width: 911px) {
   .home {
-    flex-wrap: wrap-reverse;
+    flex-wrap: wrap;
   }
 
   .home__left-container {
@@ -135,7 +135,7 @@
   }
 
   .home__text-content > h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
 
   .home__text-content > p {
@@ -143,25 +143,33 @@
   }
 
   .home__divider-container::before {
-    width: 3.5rem;
+    width: 5rem;
   }
 
   .home__divider-container::after {
-    width: 3.5rem;
+    width: 5rem;
   }
 
   .home__right-container {
     width: 100%;
     height: 50%;  
-    background-color: tomato;
+  }
+}
+
+@media(max-width: 450px){
+  .home__text-content > h1 {
+    font-size: 2rem;
   }
 
-  .home__main-image {
-    /* width: auto; */
-    height: 50%;
-    max-height: 50vh;
-    /* min-height: 100%; */
-    /* max-height: 800px; */
-    object-fit: contain;
+  .home__text-content > p {
+    font-size: 1rem;
+  }
+
+  .home__divider-container::before {
+    width: 4rem;
+  }
+
+  .home__divider-container::after {
+    width: 4rem;
   }
 }
