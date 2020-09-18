@@ -38,16 +38,16 @@
               <a class="navbar__link" href="./">Home</a>
             </li>
             <li class="navbar__list-item">
-              <a class="navbar__link" href="./">About Me</a>
+              <a class="navbar__link" href="./#about">About Me</a>
             </li>
             <li class="navbar__list-item">
-              <a class="navbar__link" href="./">Skills</a>
+              <a class="navbar__link" href="./#skills">Skills</a>
             </li>
             <li class="navbar__list-item">
-              <a class="navbar__link" href="./">Projects</a>
+              <a class="navbar__link" href="./#projects">Projects</a>
             </li>
             <li class="navbar__list-item">
-              <a class="navbar__link" href="./">Interests</a>
+              <a class="navbar__link" href="./#interests">Interests</a>
             </li>
           </ul>
         </nav>
@@ -59,7 +59,6 @@
         <div class="home__left-container">
           <div class="home__text-content">
             <h1>Steve Cruz</h1>
-            <!-- <h1>Alumni<br>of<br>PUC Minas</h1> -->
             <div class="home__divider-container">
               <svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">
                 <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
@@ -74,42 +73,44 @@
       </section>
 
       <div class="main-inner-container">
-        <section class="about">
+        <section id="about" class="about">
           <h1>About me</h1>
-          <p>Hi, I am <a href="https://www.linkedin.com/in/stevescruz/">Steve</a>! Welcome to my digital playground 🎡. I am a software engineer who is passionate about creating technology to elevate people, and building community. You can find me teaching web development on my <a href="https://dev.to/stevescruz">personal blog</a>.</p>
-          <p>Interested in collaborating? Send me a <a href="">message</a></p>
+          <div class="about__content">
+            <p>Hi, I am <a href="https://www.linkedin.com/in/stevescruz/">Steve</a>! Welcome to my digital playground 🎡. I am a software engineer who is passionate about creating technology to elevate people, and building community. Find me teaching web development on my <a href="https://dev.to/stevescruz">personal blog</a> or learning other languages. Let's see if you can guess what language I am studying after learning <span>Portuguese</span> and <span>Spanish</span>.</p>
+          <p>Interested in collaborating? Send me a <a href="mailto:steve.silverio.cruz@gmail.com">message</a>.</p>
+          </div>
         </section>
 
-        <section class="skills">
+        <section id="skills" class="skills">
           <h1>Skills</h1>
           <div class="skills__content">
             <div class="skills__table">
               <div class="skills__table__header-container">
-                <img src="" alt="" />
+                <img src="assets/database.svg" alt="database icon representing the back-end category" />
                 <strong>Back-end</strong>
               </div>
               <div class="skills__table__tags-container">
-                <span class="tag">TypeScript</span><span class="tag">SQL</span><span class="tag">PostgreSQL</span><span class="tag">Python</span><span class="tag">Java</span><span class="tag">CRUD</span><span class="tag">RESTful APIs</span><span class="tag">Algorithms</span><span class="tag">Data Structures</span><span class="tag">Back-end Frameworks</span><span class="tag">Node.js</span>
+                <span class="tag">Node.js</span><span class="tag">TypeScript</span><span class="tag">Java</span><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">PostgreSQL</span><span class="tag">Algorithms</span><span class="tag">Data Structures</span><span class="tag">CRUD</span><span class="tag">RESTful APIs</span><span class="tag">JWT</span><span class="tag">Express</span><span class="tag">AWS</span><span class="tag">MongoDB</span>
               </div>
             </div>
 
             <div class="skills__table">
               <div class="skills__table__header-container">
-                <img src="" alt="" />
+                <img src="assets/monitor.svg" alt="monitor icon representing the front-end category" />
                 <strong>Front-end</strong>
               </div>
               <div class="skills__table__tags-container">
-                <span class="tag">HTML / HTML5</span><span class="tag">CSS / CSS3</span><span class="tag">JavaScript / ES6</span><span class="tag">Front-end Frameworks</span><span class="tag">ReactJS</span><span class="tag">Sass</span><span class="tag">BEM</span>
+                <span class="tag">ReactJS</span><span class="tag">JavaScript</span><span class="tag">CSS</span><span class="tag">HTML</span><span class="tag">jQuery</span><span class="tag">Redux</span><span class="tag">Axios</span><span class="tag">Material UI</span><span class="tag">Sass</span><span class="tag">BEM</span><span class="tag">Bootstrap</span><span class="tag">Cross-browser compatibility</span><span class="tag">Accessibility / A11y</span>
               </div>
             </div>
 
             <div class="skills__table">
               <div class="skills__table__header-container">
-                <img src="" alt="" />
-                <strong>Other Tools & Methodologies</strong>
+                <img src="assets/tool.svg" alt="tool icon representing the Methodologies & Other Tools caregory" />
+                <strong>Methodologies & Other Tools</strong>
               </div>
               <div class="skills__table__tags-container">
-                <span class="tag">Git</span><span class="tag">npm</span><span class="tag">Yarn</span><span class="tag">Webpack</span><span class="tag">Babel</span><span class="tag">Docker</span><span class="tag">TDD</span><span class="tag">Jest</span><span class="tag">Agile</span><span class="tag">Accessibility / A11y</span><span class="tag">Redux.js</span><span class="tag">AWS</span>
+                <span class="tag">Git</span><span class="tag">npm</span><span class="tag">Yarn</span><span class="tag">Docker</span><span class="tag">Agile</span><span class="tag">Webpack</span><span class="tag">Babel</span><span class="tag">TDD</span><span class="tag">Jest</span><span class="tag">DDD</span><span class="tag">Linux</span>
               </div>
             </div>
           </div>
@@ -121,7 +122,7 @@
         <section class="interets">
           <h1>Interests</h1>
         </section>
-      </div>
+
       <footer class="footer">
         <p>Copyright © 2020 - Steve Cruz</p>
       </footer>

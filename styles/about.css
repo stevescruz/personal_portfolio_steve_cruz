@@ -1,3 +1,49 @@
 .about {
-  height: 40vh;
+  height: 48vh;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 1rem;
+}
+
+.about > h1 {
+  font-size: 3em;
+
+  position: relative;
+
+  margin-bottom: 1em;
+}
+
+.about > h1::before {
+  content: '';
+
+  position: absolute;
+  bottom: -5px;
+
+  width: 220px;
+  height: 4px;
+
+  background-color: var(--main-primary-color);
+  border-radius: 4px;
+}
+
+.about__content {
+  max-width: 690px;
+}
+
+.about__content p {
+  font-size: 1.8rem;
+  margin-bottom: 1em;
+}
+
+.about__content p > span {
+  font-weight: 700;
+  color: var(--main-primary-color);
+}
+
+.about__content a {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--main-primary-color);
 }
