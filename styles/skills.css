@@ -1,0 +1,28 @@
+.skills {
+  height: 60vh;
+}
+
+.skills__content {
+  display: flex;
+  /* flex-wrap: nowrap; */
+  justify-content: center;
+  align-items: center;
+}
+
+.skills__table {
+  display: flex;
+  flex-direction: column;
+}
+
+.tag {
+  display: inline-block;
+
+  color: var(--font-secondary-color);
+
+  box-shadow: 0 0.1em 0.5em var(--main-primary-color);
+
+  background-color: var(--main-primary-color);
+  padding: 1em 1em;
+  border-radius: 8px;
+  margin: 0.5rem;
+}

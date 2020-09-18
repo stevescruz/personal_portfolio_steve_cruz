@@ -1,11 +1,16 @@
 .header {
   width: 100%;
   
+  position: absolute;
+  top: 0;
+  left: 0;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   padding: 2em 1em;
+  background-color: white;
   border-bottom: 1px solid #ebebeb;
 }
 
