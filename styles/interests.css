@@ -1,0 +1,55 @@
+.interests {
+  height: 45vh;
+
+  padding: 1rem;
+}
+
+.interests > h1 {
+  font-size: 3em;
+
+  position: relative;
+
+  margin-bottom: 1em;
+}
+
+.interests > h1::before {
+  content: '';
+
+  position: absolute;
+  bottom: -5px;
+
+  width: 200px;
+  height: 4px;
+
+  background-color: var(--main-primary-color);
+  border-radius: 4px;
+}
+
+.interests__container {
+  display: flex;
+  justify-content: center;
+}
+
+.interest {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+
+.interest:not(:first-child) {
+  margin-left: 3rem;
+}
+
+.interest > img {
+  width: 262.5px;
+  height: 262.5px;
+
+  object-fit: cover;
+
+  margin-bottom: 1rem;
+}
+
+.interest > p {
+  font-size: 2em;
+}
