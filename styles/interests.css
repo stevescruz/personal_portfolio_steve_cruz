@@ -25,18 +25,13 @@
 
 .interests__container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
 .interest {
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-}
-
-.interest:not(:first-child) {
-  margin-left: 3rem;
+  margin-right: 3rem;
+  margin-bottom: 1rem;
 }
 
 .interest > img {
@@ -44,10 +39,15 @@
   height: 262.5px;
 
   object-fit: cover;
-
-  margin-bottom: 1rem;
 }
 
 .interest > p {
   font-size: 2em;
+}
+
+@media(max-width: 500px) {
+  .interest > img {
+    width: 200px;
+    height: 200px;
+  }
 }
