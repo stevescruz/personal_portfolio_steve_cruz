@@ -112,24 +112,18 @@
 
   position: relative;
 
-  overflow: hidden;
+  /* overflow: hidden; */
 
   background-color: var(--main-primary-color);
 }
 
 .home__right-container > img {
-  /* display: block; */
-
-  min-width: 100%;
-  min-height: 100%;
-
-  object-fit: cover;
+  width: 100%;
+  height: 100%;
 
   position: absolute;
-  top: 50%;
-  left: 50%;
 
-  transform: translate(-50%, -50%);
+  object-fit: cover;
 
   opacity: 0.9;
 }
@@ -175,17 +169,9 @@
   }
 
   .home__right-container > img {
-    width: 100%;
-    min-width: 0;
-    height: 100%;
-    min-height: 0;
+    position: absolute;
 
-    object-position: 70% 50%;
-    
-
-    position: static;
-
-    transform: translate(0, 0);
+    object-position: 70% 75%;
   }
 }
 
@@ -208,11 +194,6 @@
 
   .home__right-container > img {
     width: 100%;
-    min-width: 0;
-    min-height: 0;
-
-    position: static;
-
-    transform: translate(0, 0);
+    height: 100%;
   }
 }
