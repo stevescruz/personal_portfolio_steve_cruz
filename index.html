@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="styles/home.css">
   <link rel="stylesheet" href="styles/about.css">
   <link rel="stylesheet" href="styles/skills.css">
+  <link rel="stylesheet" href="styles/projects.css">
   <link rel="stylesheet" href="styles/interests.css">
   <link rel="stylesheet" href="styles/footer.css">
 
@@ -28,7 +29,7 @@
       </a>
       
       <input class="toggler" id="toggler" type="checkbox" />
-      <label class="toggler__label" for="toggler">
+      <label tabindex="0" class="toggler__label" for="toggler">
         <div class="toggler__icon"></div>
       </label>
 
@@ -122,6 +123,18 @@
 
         <section id="projects" class="projects">
           <h1>Projects</h1>
+          <div class="carousel">
+            <button class="carousel__button carousel__button--left --hidden">
+              <img src="assets/chevron-left.svg" alt="click to go to the previous image" />
+            </button>
+            <div class="carousel__track-container">
+              <ul class="carousel__track"></ul>
+            </div>
+            <button class="carousel__button carousel__button--right --hidden">
+              <img src="assets/chevron-right.svg" alt="click to go to the next image" />
+            </button>
+            <div class="carousel__nav --hidden"></div>
+          </div>
         </section>
         <section id="interests" class="interests">
           <h1>Interests</h1>
