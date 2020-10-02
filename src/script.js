@@ -1,3 +1,4 @@
+const projectsCarousel = new Carousel('projectsCarousel');
 const slidesData = [
   {
     title: 'Coca-Cola Landing Page',
@@ -22,20 +23,24 @@ const slidesData = [
 ];
 
 function addEventListeners() {
-  const carouselPrevButton = document.querySelector('.carousel__button--left');
-  const carouselNextButton = document.querySelector('.carousel__button--right');
+  const carouselPrevButton = document.querySelector(`.${projectsCarousel.mainClassName} .carousel__button--left`);
+  const carouselNextButton = document.querySelector(`.${projectsCarousel.mainClassName} .carousel__button--right`);
 
-  carouselPrevButton.addEventListener('click', previous);
-  carouselNextButton.addEventListener('click', next);
+  carouselPrevButton.addEventListener('click', () => {
+    projectsCarousel.previous();
+  });
+  carouselNextButton.addEventListener('click', () => {
+    projectsCarousel.next();
+  });
 }
 
 function init() {
   slidesData.forEach(({title, image, description}) => {
 
-    addSlide(title, image, description);
+    projectsCarousel.addSlide(title, image, description);
   });
 
-  updateSlides();
+  projectsCarousel.updateSlides();
 
   addEventListeners()
 }

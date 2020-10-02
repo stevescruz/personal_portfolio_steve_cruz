@@ -1,147 +1,170 @@
-let slides = [];
-let currentSlide = null;
+class Carousel {
 
-function updateSlides() {
-  slides = document.querySelectorAll('.carousel__slide');
-
-  if (currentSlide === null && slides.length) {
-    currentSlide = 0;
-    slides[0].classList.add('carousel__slide--current-slide');
+  constructor(mainClassName) {
+    this.slides = [];
+    this.currentSlideIndex = null;
+    this.mainClassName = mainClassName;
   }
 
-  setIndicators();
-  setSlideButtons();
-}
+  addSlide(title, image, description) {
+    const carouselTrack = document.querySelector(`.${this.mainClassName} .carousel__track`);
 
-function setIndicators() {
-  const carouselNav = document.querySelector('.carousel__nav');
+    const carouselSlide = document.createElement('li');
+    const slideTitle = document.createElement('p');
+    const slideImage = document.createElement('img');
+    const slideDescription = document.createElement('p');
+    const slideButton = document.createElement('button');
 
-  if (slides.length >= 3) {
-    carouselNav.classList.remove('--hidden');
+    carouselSlide.classList.add('carousel__slide');
 
-    for(let i = 0; i < slides.length; i ++) {
-      const carouselIndicator = document.createElement('button');
-      carouselIndicator.classList.add('carousel__dot-indicator');
+    slideTitle.textContent = title;
 
-      if(i === currentSlide) {
-        carouselIndicator.classList.add('carousel__dot-indicator--current-slide');
-      }
+    slideImage.classList.add('carousel__image');
+    slideImage.setAttribute('src', image);
 
-      carouselIndicator.setAttribute('data-number', i.toString())
-      carouselIndicator.addEventListener('click', changeTo);
+    slideDescription.textContent = description;
 
-      carouselNav.appendChild(carouselIndicator);
+    slideButton.textContent = 'Read More';
+    slideButton.classList.add('carousel__modal-button');
+    slideButton.setAttribute("tabindex", "-1");
+
+    carouselSlide.appendChild(slideTitle);
+    carouselSlide.appendChild(slideImage);
+    carouselSlide.appendChild(slideDescription);
+    carouselSlide.appendChild(slideButton);
+
+    carouselTrack.appendChild(carouselSlide);
+  }
+
+  next() {
+    const currentSlide = this.slides[this.currentSlideIndex];
+
+    this.loopAtLastSlide();
+
+    const targetSlide = this.slides[this.currentSlideIndex];
+
+    this.changeToTargetSlide(currentSlide, targetSlide);
+    this.updateDot();
+  }
+
+  previous() {
+    const currentSlide = this.slides[this.currentSlideIndex];
+
+    this.loopAtFirstSlide();
+
+    const targetSlide = this.slides[this.currentSlideIndex];
+
+    this.changeToTargetSlide(currentSlide, targetSlide);
+    this.updateDot();
+    
+  }
+
+  loopAtFirstSlide() {
+    if(this.currentSlideIndex === 0) {
+      this.currentSlideIndex = this.slides.length - 1;
+    }
+    else {
+      this.currentSlideIndex --;
     }
   }
-  else {
-    carouselNav.classList.add('--hidden');
-    
-    const carouselIndicators = carouselNav.childNodes;
-    carouselIndicators.forEach((carouselIndicator) => {
-      carouselNav.removeChild(carouselIndicator);
-    });
-  }
-}
 
-function setSlideButtons() {
-  const carouselButtons = document.querySelectorAll('.carousel > .carousel__button');
-
-  if (slides.length >= 2) {
-    carouselButtons.forEach((carouselButton) => {
-      carouselButton.classList.remove('--hidden');
-    });
-  }
-  else {
-    carouselButtons.forEach((carouselButton) => {
-      carouselButton.classList.add('--hidden');
-    });
-  }
-}
-
-function addSlide(title, image, description) {
-  const carouselTrack = document.querySelector('.carousel__track');
-
-  const carouselSlide = document.createElement('li');
-  const slideTitle = document.createElement('p');
-  const slideImage = document.createElement('img');
-  const slideDescription = document.createElement('p');
-  const slideButton = document.createElement('button');
-
-  carouselSlide.classList.add('carousel__slide');
-
-  slideTitle.textContent = title;
-
-  slideImage.classList.add('carousel__image');
-  slideImage.setAttribute('src', image);
-
-  slideDescription.textContent = description;
-
-  slideButton.textContent = 'Read More';
-  slideButton.classList.add('carousel__modal-button');
-  slideButton.setAttribute("tabindex", "-1");
-
-  carouselSlide.appendChild(slideTitle);
-  carouselSlide.appendChild(slideImage);
-  carouselSlide.appendChild(slideDescription);
-  carouselSlide.appendChild(slideButton);
-
-  carouselTrack.appendChild(carouselSlide);
-}
-
-function next() {
-  slides[currentSlide].classList.remove('carousel__slide--current-slide');
-
-  if(slides.length >= 3) {
-    const carouselIndicators = document.querySelectorAll('.carousel__dot-indicator');
-    carouselIndicators[currentSlide].classList.remove('carousel__dot-indicator--current-slide');
+  loopAtLastSlide() {
+    if(this.currentSlideIndex === this.slides.length - 1) {
+      this.currentSlideIndex = 0;
+    }
+    else {
+      this.currentSlideIndex ++;
+    }
   }
 
-  if(currentSlide === slides.length - 1) {
-    currentSlide = 0;
-  }
-  else {
-    currentSlide ++;
+  changeToTargetSlide(currentSlide, targetSlide) {
+    currentSlide.classList.remove('carousel__slide--current-slide')
+    targetSlide.classList.add('carousel__slide--current-slide');
   }
 
-  slides[currentSlide].classList.add('carousel__slide--current-slide');
+  changeToTargetDotIndicator(targetDotIndicator) {
+    const currentDotIndicator = document.querySelector(`.${this.mainClassName} .carousel__dot-indicator--current-slide`);
+    currentDotIndicator.classList.remove('carousel__dot-indicator--current-slide');
 
-  if(slides.length >= 3) {
-    const carouselIndicators = document.querySelectorAll('.carousel__dot-indicator');
-    carouselIndicators[currentSlide].classList.add('carousel__dot-indicator--current-slide');
-  }
-}
-
-function previous() {
-  slides[currentSlide].classList.remove('carousel__slide--current-slide');
-
-  if(slides.length >= 3) {
-    const carouselIndicators = document.querySelectorAll('.carousel__dot-indicator');
-    carouselIndicators[currentSlide].classList.remove('carousel__dot-indicator--current-slide');
+    targetDotIndicator.classList.add('carousel__dot-indicator--current-slide');
   }
 
-  if(currentSlide === 0) {
-    currentSlide = slides.length - 1;
+  updateSlides() {
+    this.slides = document.querySelectorAll(`.${this.mainClassName} .carousel__slide`);
+
+    if (this.currentSlideIndex === null && this.slides.length) {
+      this.currentSlideIndex = 0;
+      this.slides[0].classList.add('carousel__slide--current-slide');
+    }
+
+    this.hideShowDotIndicators();
+    this.hideShowNavButtons();
   }
-  else {
-    currentSlide --;
+
+  updateDot() {
+    if(this.slides.length >= 3) {
+      const carouselDotIndicators = document.querySelectorAll(`.${this.mainClassName} .carousel__dot-indicator`);
+      const targetDotIndicator = carouselDotIndicators[this.currentSlideIndex];
+      this.changeToTargetDotIndicator(targetDotIndicator);
+    }
   }
 
-  slides[currentSlide].classList.add('carousel__slide--current-slide');
+  hideShowDotIndicators() {
+    const carouselNav = document.querySelector(`.${this.mainClassName} .carousel__nav`);
 
-  if(slides.length >= 3) {
-    const carouselIndicators = document.querySelectorAll('.carousel__dot-indicator');
-    carouselIndicators[currentSlide].classList.add('carousel__dot-indicator--current-slide');
+    if (this.slides.length >= 3) {
+      carouselNav.classList.remove('--hidden');
+
+        carouselNav.addEventListener('click', (event) => {
+        const targetDotIndicator = event.target.closest('button');
+
+        if (targetDotIndicator) {
+          const dotIndicators = Array.from(document.querySelectorAll(`.${this.mainClassName} .carousel__dot-indicator`));
+          const targetIndex = dotIndicators.findIndex((dotIndicator) => dotIndicator === targetDotIndicator);
+
+          const currentSlide = this.slides[this.currentSlideIndex];
+          const targetSlide = this.slides[targetIndex];
+          this.currentSlideIndex = targetIndex;
+
+          this.changeToTargetSlide(currentSlide, targetSlide);
+          this.changeToTargetDotIndicator(targetDotIndicator);
+        }
+      });
+
+      for(let i = 0; i < this.slides.length; i ++) {
+        const carouselIndicator = document.createElement('button');
+        carouselIndicator.classList.add('carousel__dot-indicator');
+
+        if(i === this.currentSlideIndex) {
+          carouselIndicator.classList.add('carousel__dot-indicator--current-slide');
+        }
+
+        carouselNav.appendChild(carouselIndicator);
+      }
+    }
+    else {
+      carouselNav.classList.add('--hidden');
+      
+      const carouselIndicators = carouselNav.childNodes;
+      carouselIndicators.forEach((carouselIndicator) => {
+        carouselNav.removeChild(carouselIndicator);
+      });
+    }
   }
-}
 
-function changeTo(event) {
-  const currentIndicator = document.querySelector('.carousel__dot-indicator--current-slide');
-  currentIndicator.classList.remove('carousel__dot-indicator--current-slide');
+  hideShowNavButtons() {
+    const carouselButtons = document.querySelectorAll(`.${this.mainClassName} > .carousel__button`);
 
-  slides[currentSlide].classList.remove('carousel__slide--current-slide');
-
-  event.target.classList.add('carousel__dot-indicator--current-slide');
-  currentSlide = parseInt(event.target.dataset.number);
-  slides[currentSlide].classList.add('carousel__slide--current-slide');
+    if (this.slides.length >= 2) {
+      carouselButtons.forEach((carouselButton) => {
+        carouselButton.classList.remove('--hidden');
+      });
+    }
+    else {
+      carouselButtons.forEach((carouselButton) => {
+        carouselButton.classList.add('--hidden');
+      });
+    }
+  }
   
 }
