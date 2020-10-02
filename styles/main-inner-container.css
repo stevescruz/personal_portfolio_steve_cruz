@@ -3,6 +3,12 @@
   background-color: var(--bg-primary-color);
 }
 
+@media (max-width: 620px) {
+  .main-inner-container {
+    padding: 0 5%;
+  }
+}
+
 @media (max-width: 515px) {
   .main-inner-container {
     padding: 0 2.5%;
