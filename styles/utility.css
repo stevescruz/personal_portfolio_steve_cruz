@@ -1,0 +1,10 @@
+.section-marker {
+  position: absolute;
+  top: -95px;
+}
+
+@media (max-width: 911px) {
+  .section-marker {
+    top: -59px;
+  }
+}

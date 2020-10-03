@@ -19,6 +19,8 @@
   <link rel="stylesheet" href="styles/projects.css">
   <link rel="stylesheet" href="styles/interests.css">
   <link rel="stylesheet" href="styles/footer.css">
+  
+  <link rel="stylesheet" href="styles/utility.css">
 
   <link rel="stylesheet" href="styles/colors.css">
   <link rel="stylesheet" href="styles/reset.css">
@@ -80,16 +82,17 @@
       </section>
 
       <div class="main-inner-container">
-        <section id="about" class="about">
-          <h1>About me</h1>
+        <section class="about">
+          <!-- The span inside the h1 is to allow the scrolling behavior smooth to work with the header without making the fixed header stay on top of the h1-->
+          <h1>About me<span id="about" class="section-marker"></h1>
           <div class="about__content">
             <p>Hi, I am <a target="blank"href="https://www.linkedin.com/in/stevescruz/">Steve</a>! Welcome to my digital playground 🎡. I am a software engineer who is passionate about creating technology to elevate people, and community building. Find me teaching web development on my <a target="blank" href="https://dev.to/stevescruz">personal blog</a> or contributing to the <a target="blank" href="https://www.devchallenge.com.br/">DevChallenge</a> open-source project.</p>
           <p>Interested in collaborating? Send me a <a href="mailto:steve.silverio.cruz@gmail.com">message</a>.</p>
           </div>
         </section>
 
-        <section id="skills" class="skills">
-          <h1>Skills</h1>
+        <section class="skills">
+          <h1>Skills<span id="skills" class="section-marker"></span></h1>
           <div class="skills__content">
             <div class="skills__table">
               <div class="skills__table__header-container">
@@ -124,8 +127,8 @@
           </div>
         </section>
 
-        <section id="projects" class="projects">
-          <h1>Projects</h1>
+        <section class="projects">
+          <h1>Projects<span id="projects" class="section-marker"></span></h1>
           <div class="carousel projectsCarousel">
             <button class="carousel__button carousel__button--left --hidden">
               <img src="assets/chevron-left.svg" alt="click to go to the previous image" />
@@ -139,8 +142,8 @@
             <div class="carousel__nav --hidden"></div>
           </div>
         </section>
-        <section id="interests" class="interests">
-          <h1>Interests</h1>
+        <section class="interests">
+          <h1>Interests<span id="interests" class="section-marker"></span></h1>
           <div class="interests__container">
             <div class="interest">
               <img src="assets/interest_1.jpg" alt="Red Bayern Munich's ball">
