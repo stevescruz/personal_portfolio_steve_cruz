@@ -27,11 +27,8 @@
   width: 670px;
 
   position: relative;
-  /* float: left; */
 
-  margin: 0 auto 1.5em;
-
-  /* transition: 0.5s; */
+  margin: 0 auto 2.5em;
 }
 
 .carousel__track-container {
@@ -132,10 +129,6 @@
 .slide__button-link-container > .button-link > img {
   margin-right: 0.5rem;
 }
-
-/* .carousel__slide > button {
-  font-size: 1rem;
-} */
 
 .carousel__button {
   position: absolute;

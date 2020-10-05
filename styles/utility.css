@@ -3,6 +3,10 @@
   top: -95px;
 }
 
+.dotted-pattern {
+  border-bottom: 5px dotted var(--main-primary-color);
+}
+
 @media (max-width: 911px) {
   .section-marker {
     top: -59px;
