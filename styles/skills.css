@@ -61,7 +61,7 @@
   font-size: 1.4em;
 }
 
-.skills__table__tags-container {
+.tags-container {
   display: flex;
   flex-wrap: wrap;
 
@@ -72,8 +72,6 @@
   display: inline-block;
 
   color: var(--font-secondary-color);
-
-  /* box-shadow: 0 0.1em 0.5em var(--main-primary-color); */
 
   background-color: var(--main-primary-color);
   padding: 1em 0.8em;

@@ -4,16 +4,56 @@ class Carousel {
     this.slides = [];
     this.currentSlideIndex = null;
     this.mainClassName = mainClassName;
+
+    this.addEventListeners();
   }
 
-  addSlide(title, image, description) {
+  addEventListeners() {
+    const carouselPrevButton = document.querySelector(`.${this.mainClassName} .carousel__button--left`);
+    const carouselNextButton = document.querySelector(`.${this.mainClassName} .carousel__button--right`);
+    const carouselNav = document.querySelector(`.${this.mainClassName} .carousel__nav`);
+
+    carouselPrevButton.addEventListener('click', () => {
+      projectsCarousel.previous();
+    });
+    carouselNextButton.addEventListener('click', () => {
+      projectsCarousel.next();
+    });
+
+
+    carouselNav.addEventListener('click', (event) => {
+      const targetDotIndicator = event.target.closest('button');
+
+      if (targetDotIndicator) {
+        const dotIndicators = Array.from(document.querySelectorAll(`.${this.mainClassName} .carousel__dot-indicator`));
+        const targetIndex = dotIndicators.findIndex((dotIndicator) => dotIndicator === targetDotIndicator);
+
+        const currentSlide = this.slides[this.currentSlideIndex];
+        const targetSlide = this.slides[targetIndex];
+        this.currentSlideIndex = targetIndex;
+
+        this.changeToTargetSlide(currentSlide, targetSlide);
+        this.changeToTargetDotIndicator(targetDotIndicator);
+      }
+    });
+  }
+
+  addSlide(title, image, tags, description) {
     const carouselTrack = document.querySelector(`.${this.mainClassName} .carousel__track`);
 
     const carouselSlide = document.createElement('li');
     const slideTitle = document.createElement('p');
     const slideImage = document.createElement('img');
+    const slideTagsContainer = document.createElement('ul');
     const slideDescription = document.createElement('p');
     const slideButton = document.createElement('button');
+
+    tags.forEach((tag) => {
+      const slideTag = document.createElement('li');
+      slideTag.textContent = tag;
+      slideTag.classList.add('tag');
+      slideTagsContainer.appendChild(slideTag);
+    });
 
     carouselSlide.classList.add('carousel__slide');
 
@@ -22,14 +62,22 @@ class Carousel {
     slideImage.classList.add('carousel__image');
     slideImage.setAttribute('src', image);
 
+    slideTagsContainer.classList.add('tags-container');
+
     slideDescription.textContent = description;
 
     slideButton.textContent = 'Read More';
     slideButton.classList.add('carousel__modal-button');
     slideButton.setAttribute("tabindex", "-1");
+    slideButton.addEventListener('click', () => {
+      const popUp = new PopUp();
+      document.body.appendChild(popUp);
+      popUp.show();
+    });
 
     carouselSlide.appendChild(slideTitle);
     carouselSlide.appendChild(slideImage);
+    carouselSlide.appendChild(slideTagsContainer);
     carouselSlide.appendChild(slideDescription);
     carouselSlide.appendChild(slideButton);
 
@@ -114,22 +162,6 @@ class Carousel {
 
     if (this.slides.length >= 3) {
       carouselNav.classList.remove('--hidden');
-
-        carouselNav.addEventListener('click', (event) => {
-        const targetDotIndicator = event.target.closest('button');
-
-        if (targetDotIndicator) {
-          const dotIndicators = Array.from(document.querySelectorAll(`.${this.mainClassName} .carousel__dot-indicator`));
-          const targetIndex = dotIndicators.findIndex((dotIndicator) => dotIndicator === targetDotIndicator);
-
-          const currentSlide = this.slides[this.currentSlideIndex];
-          const targetSlide = this.slides[targetIndex];
-          this.currentSlideIndex = targetIndex;
-
-          this.changeToTargetSlide(currentSlide, targetSlide);
-          this.changeToTargetDotIndicator(targetDotIndicator);
-        }
-      });
 
       for(let i = 0; i < this.slides.length; i ++) {
         const carouselIndicator = document.createElement('button');
