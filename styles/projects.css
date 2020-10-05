@@ -114,6 +114,7 @@
 
 .slide__button-link-container {
   display: flex;
+  justify-content: center;
 }
 
 .slide__button-link-container > .button-link {
