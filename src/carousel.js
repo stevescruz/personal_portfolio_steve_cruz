@@ -38,7 +38,7 @@ class Carousel {
     });
   }
 
-  addSlide(title, image, tags, description) {
+  addSlide({ title, image, tags, description, github, demo }) {
     const carouselTrack = document.querySelector(`.${this.mainClassName} .carousel__track`);
 
     const carouselSlide = document.createElement('li');
@@ -46,7 +46,41 @@ class Carousel {
     const slideImage = document.createElement('img');
     const slideTagsContainer = document.createElement('ul');
     const slideDescription = document.createElement('p');
-    const slideButton = document.createElement('button');
+    const slideButtonLinksContainer = document.createElement('div');
+    const slideButtonLinkRepo = document.createElement('a');
+    const githubImage = document.createElement('img');
+    const repoTextNode = document.createTextNode('Repo')
+    
+    slideButtonLinksContainer.classList.add('slide__button-link-container');
+
+    slideButtonLinkRepo.classList.add('button-link');
+    slideButtonLinkRepo.setAttribute('href', github);
+    slideButtonLinkRepo.setAttribute('target', 'blank');
+    slideButtonLinkRepo.setAttribute('tabindex', '-1');
+
+    githubImage.setAttribute('src', 'assets/github.svg');
+
+    slideButtonLinkRepo.appendChild(githubImage);
+    slideButtonLinkRepo.appendChild(repoTextNode);
+    slideButtonLinksContainer.appendChild(slideButtonLinkRepo);
+
+    
+    if(demo) {
+      const slideButtonLinkDemo = document.createElement('a');
+      const externalLinkImage = document.createElement('img');
+      const demoTextNode = document.createTextNode('Demo')
+      
+      slideButtonLinkDemo.classList.add('button-link');
+      slideButtonLinkDemo.setAttribute('href', demo);
+      slideButtonLinkDemo.setAttribute('target', 'blank');
+      slideButtonLinkDemo.setAttribute('tabindex', '-1');
+
+      externalLinkImage.setAttribute('src', 'assets/external-link.svg');
+      
+      slideButtonLinkDemo.appendChild(externalLinkImage);
+      slideButtonLinkDemo.appendChild(demoTextNode);
+      slideButtonLinksContainer.appendChild(slideButtonLinkDemo);
+    }
 
     tags.forEach((tag) => {
       const slideTag = document.createElement('li');
@@ -66,20 +100,11 @@ class Carousel {
 
     slideDescription.textContent = description;
 
-    slideButton.textContent = 'Read More';
-    slideButton.classList.add('carousel__modal-button');
-    slideButton.setAttribute("tabindex", "-1");
-    slideButton.addEventListener('click', () => {
-      const popUp = new PopUp();
-      document.body.appendChild(popUp);
-      popUp.show();
-    });
-
     carouselSlide.appendChild(slideTitle);
     carouselSlide.appendChild(slideImage);
     carouselSlide.appendChild(slideTagsContainer);
     carouselSlide.appendChild(slideDescription);
-    carouselSlide.appendChild(slideButton);
+    carouselSlide.appendChild(slideButtonLinksContainer);
 
     carouselTrack.appendChild(carouselSlide);
   }
