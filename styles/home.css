@@ -85,6 +85,31 @@
   border-radius: 1rem;
 }
 
+.home__contact__container {
+  margin-bottom: 1.9em;
+}
+
+.contact__list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact__list-item {
+  display: block;
+}
+
+.contact {
+  width: 100%;
+  height: 100%;
+
+  outline-color: white;
+}
+
+.contact__list-item + .contact__list-item {
+  margin-left: 16px;
+}
+
 .button-link {
     display: inline-block;
     text-align: center;
