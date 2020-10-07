@@ -151,8 +151,19 @@ class Carousel {
   }
 
   changeToTargetSlide(currentSlide, targetSlide) {
+    const currentSlideButtons = document.querySelectorAll('.carousel__slide--current-slide .button-link');
     currentSlide.classList.remove('carousel__slide--current-slide')
+
+    currentSlideButtons.forEach((button) => {
+      button.setAttribute('tabindex', '-1');
+    });
+
     targetSlide.classList.add('carousel__slide--current-slide');
+    const targetSlideButtons = document.querySelectorAll('.carousel__slide--current-slide .button-link');
+
+    targetSlideButtons.forEach((button) => {
+      button.setAttribute('tabindex', '0');
+    });
   }
 
   changeToTargetDotIndicator(targetDotIndicator) {
@@ -168,6 +179,12 @@ class Carousel {
     if (this.currentSlideIndex === null && this.slides.length) {
       this.currentSlideIndex = 0;
       this.slides[0].classList.add('carousel__slide--current-slide');
+
+      const slideButtons = this.slides[0].querySelectorAll('.slide__button-link-container > .button-link');
+
+      slideButtons.forEach((button) => {
+        button.setAttribute('tabindex', '0');
+      })
     }
 
     this.hideShowDotIndicators();
