@@ -43,6 +43,7 @@
 
 .interest > p {
   font-size: 2em;
+  text-align: center;
 }
 
 @media(max-width: 500px) {
