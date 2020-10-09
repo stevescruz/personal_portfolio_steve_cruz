@@ -1,11 +1,18 @@
 class Carousel {
 
-  constructor(mainClassName) {
+  constructor(mainClassName, slidesData) {
     this.slides = [];
     this.currentSlideIndex = null;
     this.mainClassName = mainClassName;
 
     this.addEventListeners();
+
+    slidesData.forEach((project) => {
+      this.addSlide(project);
+    });
+  
+    this.updateSlides();
+    this.slideButtonsTabIndex();
   }
 
   addEventListeners() {
@@ -35,6 +42,10 @@ class Carousel {
         this.changeToTargetSlide(currentSlide, targetSlide);
         this.changeToTargetDotIndicator(targetDotIndicator);
       }
+    });
+
+    window.addEventListener('resize', () => {
+      this.slideButtonsTabIndex();
     });
   }
 
@@ -175,17 +186,36 @@ class Carousel {
 
   updateSlides() {
     this.slides = document.querySelectorAll(`.${this.mainClassName} .carousel__slide`);
+    const currentSlide = document.querySelector(`.${this.mainClassName} .carousel__slide--current-slide`);
 
-    if (this.currentSlideIndex === null && this.slides.length) {
-      this.currentSlideIndex = 0;
-      this.slides[0].classList.add('carousel__slide--current-slide');
-
-      const slideButtons = this.slides[0].querySelectorAll('.slide__button-link-container > .button-link');
+    if(currentSlide) {
+      currentSlide.classList.remove('carousel__slide--current-slide')
+      
+      const slideButtons = currentSlide.querySelectorAll('.slide__button-link-container > .button-link');
 
       slideButtons.forEach((button) => {
-        button.setAttribute('tabindex', '0');
-      })
+      button.setAttribute('tabindex', '-1');
+    })
     }
+
+    this.currentSlideIndex = 0;
+    this.slides[0].classList.add('carousel__slide--current-slide');
+
+    const slideButtons = this.slides[0].querySelectorAll('.slide__button-link-container > .button-link');
+
+    slideButtons.forEach((button) => {
+      button.setAttribute('tabindex', '0');
+    })
+
+    for(let i = 1; i < this.slides.length; i ++) {
+      const slideButtons = this.slides[i].querySelectorAll('.slide__button-link-container > .button-link');
+
+      slideButtons.forEach((button) => {
+      button.setAttribute('tabindex', '-1');
+    })
+    }
+
+    
 
     this.hideShowDotIndicators();
     this.hideShowNavButtons();
@@ -201,6 +231,14 @@ class Carousel {
 
   hideShowDotIndicators() {
     const carouselNav = document.querySelector(`.${this.mainClassName} .carousel__nav`);
+    const carouselNavChildrenCount = carouselNav.childElementCount;
+
+    if(carouselNavChildrenCount > 0) {
+      const carouselIndicators = carouselNav.childNodes;
+      while(carouselIndicators.length > 0) {
+        carouselNav.removeChild(carouselIndicators[0]);
+      }
+    }
 
     if (this.slides.length >= 3) {
       carouselNav.classList.remove('--hidden');
@@ -220,9 +258,9 @@ class Carousel {
       carouselNav.classList.add('--hidden');
       
       const carouselIndicators = carouselNav.childNodes;
-      carouselIndicators.forEach((carouselIndicator) => {
-        carouselNav.removeChild(carouselIndicator);
-      });
+      while(carouselIndicators.length > 0) {
+        carouselNav.removeChild(carouselIndicators[0]);
+      }
     }
   }
 
@@ -240,5 +278,20 @@ class Carousel {
       });
     }
   }
-  
+ 
+  slideButtonsTabIndex() {
+    //https://stackoverflow.com/a/1248126/14228757
+    const viewportWidth = document.documentElement.clientWidth;
+
+    if(viewportWidth <= 853) {
+      const slideButton = document.querySelectorAll(`.${this.mainClassName} .slide__button-link-container > .button-link`);
+    
+      slideButton.forEach((slideButton) => {
+        slideButton.setAttribute('tabindex', '0')
+      });
+    }
+    else {
+      this.updateSlides();
+    }
+  }
 }

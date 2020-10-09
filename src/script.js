@@ -1,4 +1,3 @@
-const projectsCarousel = new Carousel('projectsCarousel');
 const slidesData = [
   {
     title: 'Coca-Cola Landing Page',
@@ -32,13 +31,4 @@ const slidesData = [
   },
 ];
 
-function init() {
-  slidesData.forEach((project) => {
-
-    projectsCarousel.addSlide(project);
-  });
-
-  projectsCarousel.updateSlides();
-}
-
-init();
+const projectsCarousel = new Carousel('projectsCarousel', slidesData);
