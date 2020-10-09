@@ -34,11 +34,13 @@ function setHamburgerMenuTabIndex (isOpen) {
   if(isOpen) {
     navLinks.forEach((navLink) => {
       navLink.setAttribute('tabindex', '0')
+      navLink.setAttribute('aria-hidden', 'false')
     });   
   }
   else {
     navLinks.forEach((navLink) => {
       navLink.setAttribute('tabindex', '-1')
+      navLink.setAttribute('aria-hidden', 'true')
     });  
   }
 }
