@@ -3,8 +3,6 @@ function toggleHamburguerMenu() {
   const togglerIcon = document.querySelector('.toggler__icon')
   const popupWindow = document.querySelector('.popup-window')
 
-  // const togglerChangeEvent = new Event('change');
-  
   toggler.classList.toggle('toggler--open-menu');
   togglerIcon.classList.toggle('toggler__icon--open-menu');
   popupWindow.classList.toggle('popup-window--open-menu');
@@ -14,8 +12,6 @@ function setHamburgerMenuEvents(event) {
   const toggler = document.querySelector('.toggler');
 
   const isOpen = toggler.classList.contains('toggler--open-menu');
-  
-  console.log('isOpen:', isOpen);
 
   setBodyOverflow(isOpen);
   setHamburgerMenuTabIndex(isOpen);
@@ -25,16 +21,11 @@ function setHamburgerMenuEvents(event) {
   if(isOpen) {
     popupWindow.addEventListener('click', closeHamburgerMenu);
     popupWindow.addEventListener('keydown', keydownCloseHamburgerMenu);
-
-    console.log('opened');
   }
   else {
     popupWindow.removeEventListener('click', closeHamburgerMenu);
     popupWindow.removeEventListener('keydown', keydownCloseHamburgerMenu);
-
-    console.log('closed');
   }
-
 }
 
 function setHamburgerMenuTabIndex (isOpen) {
@@ -78,8 +69,21 @@ function keydownCloseHamburgerMenu(event) {
   if(!isKeyValid(event, event.code)) {
     return false;
   }
-
   closeHamburgerMenu(event);
+}
+
+function resizeHamburgerMenuTabIndex() {
+  const viewportWidth = document.documentElement.clientWidth;
+
+  if(viewportWidth <= 894) {
+    const toggler = document.querySelector('.toggler');
+    const isOpen = toggler.classList.contains('toggler--open-menu');
+
+    setHamburgerMenuTabIndex(false || isOpen);
+  }
+  else {
+    setHamburgerMenuTabIndex(true);
+  }
 }
 
 const toggler = document.querySelector('.toggler');
@@ -88,3 +92,10 @@ toggler.addEventListener('click', (event) => {
   toggleHamburguerMenu();
   setHamburgerMenuEvents(event);
 });
+
+
+window.addEventListener('resize', () => {
+  resizeHamburgerMenuTabIndex();
+})
+
+resizeHamburgerMenuTabIndex();
