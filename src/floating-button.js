@@ -6,5 +6,10 @@ window.addEventListener('scroll', () => {
   }
   else {
     floatingButton.classList.remove('floating-button--active')
+    floatingButton.blur();
   }
 });
+
+floatingButton.addEventListener('click', () => {
+  floatingButton.blur();
+})
