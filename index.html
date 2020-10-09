@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Steve Cruz - Personal Website</title>
 
+  <script src="src/hamburger-menu.js" defer></script>
   <script src="src/pop-up.js" defer></script>
   <script src="src/carousel.js" defer></script>
   <script src="src/floating-button.js" defer></script>
@@ -35,10 +36,9 @@
         <h1>Steve Cruz</h1>
       </a>
       
-      <input class="toggler" id="toggler" type="checkbox" />
-      <label tabindex="0" class="toggler__label" for="toggler">
+      <button class="toggler">
         <div class="toggler__icon"></div>
-      </label>
+      </button>
 
       <div class="popup-window">
         <nav class="navbar">
@@ -47,7 +47,7 @@
               <a class="navbar__link" href="./">Home</a>
             </li>
             <li class="navbar__list-item">
-              <a class="navbar__link" href="./#about">About Me</a>
+              <a class="navbar__link" href="./#about">About me</a>
             </li>
             <li class="navbar__list-item">
               <a class="navbar__link" href="./#skills">Skills</a>
@@ -196,5 +196,6 @@
       </footer>
     </section>
   </div>
+
 </body>
 </html>

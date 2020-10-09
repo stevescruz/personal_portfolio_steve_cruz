@@ -31,10 +31,6 @@
   display: none;
 }
 
-.toggler__label {
-  display: none;
-}
-
 .navbar__list {
   display: flex;
 }
@@ -58,12 +54,7 @@
   }
 
   .toggler {
-    font-size: 2em;
-    text-decoration: none;
-    user-select: none;
-  }
-
-  .toggler__label {
+    all: unset;
     display: inline-block;
 
     z-index: 1001;
@@ -71,16 +62,24 @@
     transition: background-image .35s, opacity .35s;
   }
 
+  .toggler:focus {
+    outline: 1px dotted var(--main-primary-color);
+  }
+
+  .toggler--open-menu:focus {
+    outline-color: var(--font-secondary-color);
+  }
+
   .toggler__icon {
     width: 26px;
     height: 26px;
-
+    
     background-image: url('../assets/menu.svg');
     background-size: cover;
     background-repeat: no-repeat;
   }
 
-  .toggler__label:not(:checked):hover .toggler__icon {
+  .toggler > :not(.toggler__icon--open-menu):hover {
     background-image: url('../assets/menu-hover.svg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -88,13 +87,13 @@
     opacity: 1;
   }
 
-  .toggler:checked + .toggler__label .toggler__icon {
+  .toggler__icon--open-menu {
     background-image: url('../assets/x.svg');
     background-size: cover;
     background-repeat: no-repeat;
   }
 
-  .toggler__label:hover {
+  .toggler:hover {
     opacity: 0.75;
 
     cursor: pointer;
@@ -118,7 +117,7 @@
     transition: all 0.7s ease;
   }
 
-  .toggler:checked ~ .popup-window {
+  .popup-window--open-menu {
     top: 0;
 
     opacity: 0.95;
