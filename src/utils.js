@@ -5,10 +5,6 @@ const validButtonKeys = new Set;
 validButtonKeys.add('Enter');
 validButtonKeys.add('Space');
 
-const tabKeys = new Set;
-tabKeys.add('Tab');
-tabKeys.add('Shift');
-
 function isKeyValid(event, key) {
   const element = event.target;
 

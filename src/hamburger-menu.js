@@ -21,10 +21,12 @@ function setHamburgerMenuEvents(event) {
   if(isOpen) {
     popupWindow.addEventListener('click', closeHamburgerMenu);
     popupWindow.addEventListener('keydown', keydownCloseHamburgerMenu);
+    hamburgerMenuTrapFocus(isOpen);
   }
   else {
     popupWindow.removeEventListener('click', closeHamburgerMenu);
     popupWindow.removeEventListener('keydown', keydownCloseHamburgerMenu);
+    hamburgerMenuTrapFocus(isOpen);
   }
 }
 
@@ -45,8 +47,41 @@ function setHamburgerMenuTabIndex (isOpen) {
   }
 }
 
-function setHamburgerMenuTrapFocus() {
+function cycleFocusToLast(event) {
+  if (event.code === 'Tab' && event.shiftKey) {
+    const lastElement = document.querySelector('.popup-window .navbar__list-item:last-of-type .navbar__link');
+    event.preventDefault();
+    lastElement.focus();
+  }
+}
 
+function cycleFocusToFirst(event) {
+   if (event.code === 'Tab' && event.shiftKey === false) {
+    const firstElement = document.querySelector('.toggler');
+    event.preventDefault();
+    firstElement.focus();
+  }
+}
+
+function hamburgerMenuTrapFocus(isOpen) {
+  /*
+  In a general approach it's necessary to check focusable elements, you need to check: 
+    1. if it is a <a>, <button>, <input>, <textarea>, <select> or <details>
+    2. if it has tabindex set to 0
+    3. if it has tabindex set to a positive number
+    4 . filter elements (like button) that can be disabled. Disabled elements are not focusable.
+  */
+  const firstElement = document.querySelector('.toggler');
+  const lastElement = document.querySelector('.popup-window .navbar__list-item:last-of-type .navbar__link');
+
+  if(isOpen) {
+    firstElement.addEventListener('keydown', cycleFocusToLast);
+    lastElement.addEventListener('keydown', cycleFocusToFirst);
+  }
+  else {
+    firstElement.removeEventListener('keydown', cycleFocusToLast);
+    lastElement.removeEventListener('keydown', cycleFocusToFirst);
+  }
 }
 
 function setBodyOverflow (isOpen) {
