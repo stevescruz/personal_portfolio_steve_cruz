@@ -20,12 +20,10 @@ function setHamburgerMenuEvents(event) {
 
   if(isOpen) {
     popupWindow.addEventListener('click', closeHamburgerMenu);
-    popupWindow.addEventListener('keydown', keydownCloseHamburgerMenu);
     hamburgerMenuTrapFocus(isOpen);
   }
   else {
     popupWindow.removeEventListener('click', closeHamburgerMenu);
-    popupWindow.removeEventListener('keydown', keydownCloseHamburgerMenu);
     hamburgerMenuTrapFocus(isOpen);
   }
 }
@@ -37,13 +35,13 @@ function setHamburgerMenuTabIndex (isOpen) {
     navLinks.forEach((navLink) => {
       navLink.setAttribute('tabindex', '0')
       navLink.setAttribute('aria-hidden', 'false')
-    });   
+    });  
   }
   else {
     navLinks.forEach((navLink) => {
       navLink.setAttribute('tabindex', '-1')
       navLink.setAttribute('aria-hidden', 'true')
-    });  
+    });
   }
 }
 
@@ -96,17 +94,10 @@ function setBodyOverflow (isOpen) {
 function closeHamburgerMenu(event) {
   const anchor = event.target.closest('a');
   const div = event.target.closest('div');
-
   if(anchor?.nodeName === 'A' || div?.nodeName === 'DIV') {
     toggleHamburguerMenu();
+    setHamburgerMenuEvents(event);
   }
-}
-
-function keydownCloseHamburgerMenu(event) {
-  if(!isKeyValid(event, event.code)) {
-    return false;
-  }
-  closeHamburgerMenu(event);
 }
 
 function resizeHamburgerMenuTabIndex() {
